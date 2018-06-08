@@ -18,8 +18,6 @@ public class BannerScript : MonoBehaviour {
 
 		MoPubManager.onAdLoadedEvent += onAdLoadedEvent;
 		MoPubManager.onAdFailedEvent += onAdFailedEvent;
-
-
 	}
 	
 	// Update is called once per frame

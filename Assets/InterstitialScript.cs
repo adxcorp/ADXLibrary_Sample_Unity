@@ -30,14 +30,10 @@ public class InterstitialScript : MonoBehaviour {
 		#elif UNITY_IPHONE
 		MoPub.requestInterstitialAd ("f6110c24fa8a4daf9c6159f5ea181e7d");  
 		#endif  
-
-
 	}
 
 	public void onInterstitialFailedEvent(string s) {
 		Debug.Log("onInterstitialFailedEvent ::: ");
-
-
 	}
 
 	public void onInterstitialLoadedEvent(string s) {

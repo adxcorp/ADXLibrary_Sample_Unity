@@ -159,7 +159,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.adxcorp.adsample
-    iOS: com.malangstudio.alarmMonOld
+    iOS: com.adxcorp.adxdev
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16

@@ -3,6 +3,9 @@
     <package>com.android.support:animated-vector-drawable:26.1.0</package>
     <package>com.android.support:appcompat-v7:26.1.0</package>
     <package>com.android.support:palette-v7:26.1.0</package>
+    <package>com.android.support:recyclerview-v7:26.1.0</package>
+    <package>com.google.android.exoplayer:exoplayer-core:r2.4.2</package>
+    <package>com.google.android.exoplayer:exoplayer-dash:r2.4.2</package>
     <package>com.google.android.gms:play-services-ads-lite:12.0.1</package>
     <package>com.google.android.gms:play-services-gass:12.0.1</package>
   </packages>
@@ -13,6 +16,7 @@
     <file>Assets/Plugins/Android/com.android.support.animated-vector-drawable-26.1.0.aar</file>
     <file>Assets/Plugins/Android/com.android.support.appcompat-v7-26.1.0.aar</file>
     <file>Assets/Plugins/Android/com.android.support.palette-v7-26.1.0.aar</file>
+    <file>Assets/Plugins/Android/com.android.support.recyclerview-v7-26.1.0.aar</file>
     <file>Assets/Plugins/Android/com.android.support.support-annotations-26.1.0.jar</file>
     <file>Assets/Plugins/Android/com.android.support.support-compat-26.1.0.aar</file>
     <file>Assets/Plugins/Android/com.android.support.support-core-ui-26.1.0.aar</file>
@@ -21,6 +25,8 @@
     <file>Assets/Plugins/Android/com.android.support.support-media-compat-26.1.0.aar</file>
     <file>Assets/Plugins/Android/com.android.support.support-v4-26.1.0.aar</file>
     <file>Assets/Plugins/Android/com.android.support.support-vector-drawable-26.1.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.exoplayer.exoplayer-core-r2.4.2.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.exoplayer.exoplayer-dash-r2.4.2.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-lite-12.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-lite-license-12.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-basement-12.0.1.aar</file>

@@ -3,65 +3,77 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using GoogleMobileAds.Api;
-using GoogleMobileAds.Api.Mediation.Vungle;
+using GoogleMobileAds.Api.Mediation;
 
 public class ADXSampleScript : MonoBehaviour {
+	
+	public static Boolean IS_FORCED_SET = false;
+	public static Boolean IS_MOPUB_RV = false;
+
+	#if UNITY_ANDROID
+	string bannerAdUnitID = "c0a9aaa3404f4d7db48ca71ddb647502";
+	string interstitialAdUnitID = "a8e0e1ff9de44766be2102e354fe3f92";
+	string mopubRvAdUnitID = "56ceda53658b48198de5993ff3010487";
+
+	string appId = "ca-app-pub-7466439784264697~3084726285";
+	string admobRvAdUnitID = "ca-app-pub-7466439784264697/2318439525";
+
+	#elif UNITY_IPHONE
+	string bannerAdUnitID = "619fff25829c4a6bb707d14726d3fbe8";
+	string interstitialAdUnitID = "7495f98d9e534cb78aa274259248f3ef";
+	string mopubRvAdUnitID = "4cbf780ea73e4e218c79a37c50c6eb8e";
+
+	string appId = "ca-app-pub-7466439784264697~7972777801";
+	string admobRvAdUnitID = "ca-app-pub-7466439784264697/6572954274";
+	#endif 
 
 	public static RewardBasedVideoAd rewardedVideo;
 
 	// Use this for initialization
 	void Start () {
-		ADXGDPRManager.Initialize("a9bcfae03030442da3ed277aff98713c");
 
-		//*** 0 : DEFAULT
-		//*** 1 : DEBUG (InEEA)
-//		ADXGDPRManager.SetDebugState(1);
+		if (IS_FORCED_SET) {
+			ADXGDPRManager.InitializeWithSetConsentState (bannerAdUnitID, 1);
+		} else {
+			ADXGDPRManager.InitializeWithShowADXConsent (bannerAdUnitID, 0);
+		}
 
 		ADXGDPR.OnADXConsentCompleted += onADXConsentCompleted;
-
 	}
 
 	void Update () {
 		
 	}
 
-	public void ShowConsent() {
-		ADXGDPRManager.ShowADXConsent();
-	}
-
 	public void onADXConsentCompleted(string s) {
 		Debug.Log("onADXConsentCompleted ::: ");
 
-		#if UNITY_ANDROID
+		InitStandard ();
 
+		if (IS_MOPUB_RV) {
+			InitMoPubRV ();
+		} else {
+			InitAdMobRV ();
+		}
+	}
+
+	public void GetData() {
+		Debug.Log ("GetConsentState : " + ADXGDPRManager.GetConsentState ());
+		Debug.Log ("GetPrivacyPolicyURL : " + ADXGDPRManager.GetPrivacyPolicyURL ());
+
+		ADXGDPRManager.SetConsentState (3);
+		Debug.Log ("GetConsentState : " + ADXGDPRManager.GetConsentState());
+	}
+
+	public void InitStandard() {
+		
 		//*** Banner
-		var allBannerAdUnits = new string[] { "f86ac2fde1d4480e95f1f0d80710a2fc" };
+		var allBannerAdUnits = new string[] { bannerAdUnitID };
 		MoPub.LoadBannerPluginsForAdUnits(allBannerAdUnits);
-		MoPub.CreateBanner ("f86ac2fde1d4480e95f1f0d80710a2fc", MoPub.AdPosition.BottomCenter);  
 
 		//*** Interstitial
-		var allInterstitialAdUnits = new string[] { "7758ce2f590f43fd8ba9f03d14fc8b78" };
+		var allInterstitialAdUnits = new string[] { interstitialAdUnitID };
 		MoPub.LoadInterstitialPluginsForAdUnits(allInterstitialAdUnits);
-
-		//*** Rewarded Video
-		string appId = "ca-app-pub-7466439784264697~3084726285";
-
-		#elif UNITY_IPHONE
-
-		//*** Banner
-		var allBannerAdUnits = new string[] { "a9bcfae03030442da3ed277aff98713c" };
-		MoPub.LoadBannerPluginsForAdUnits(allBannerAdUnits);
-		MoPub.CreateBanner ("a9bcfae03030442da3ed277aff98713c", MoPub.AdPosition.BottomCenter); 
-
-		//*** Interstitial
-		var allInterstitialAdUnits = new string[] { "f6110c24fa8a4daf9c6159f5ea181e7d" };
-		MoPub.LoadInterstitialPluginsForAdUnits(allInterstitialAdUnits);
-
-		//*** Rewarded Video
-		string appId = "ca-app-pub-7466439784264697~7972777801";
-
-		#endif  
-
 
 		//*** Banner
 		MoPubManager.OnAdLoadedEvent += onAdLoadedEvent;
@@ -71,6 +83,25 @@ public class ADXSampleScript : MonoBehaviour {
 		MoPubManager.OnInterstitialLoadedEvent += onInterstitialLoadedEvent;
 		MoPubManager.OnInterstitialFailedEvent += onInterstitialFailedEvent;
 		MoPubManager.OnInterstitialDismissedEvent += onInterstitialDismissedEvent;
+	}
+
+	public void InitMoPubRV() {
+
+		var allRewardedAdUnits = new string[] { mopubRvAdUnitID };
+		MoPub.LoadRewardedVideoPluginsForAdUnits(allRewardedAdUnits);
+
+		MoPubManager.OnRewardedVideoLoadedEvent += OnRewardedVideoLoadedEvent;
+		MoPubManager.OnRewardedVideoFailedEvent += OnRewardedVideoFailedEvent;
+		MoPubManager.OnRewardedVideoClosedEvent += OnRewardedVideoClosedEvent;
+		MoPubManager.OnRewardedVideoReceivedRewardEvent += OnRewardedVideoReceivedRewardEvent;
+		MoPubManager.OnRewardedVideoExpiredEvent += OnRewardedVideoExpiredEvent;
+		MoPubManager.OnRewardedVideoShownEvent += OnRewardedVideoShownEvent;
+		MoPubManager.OnRewardedVideoClickedEvent += OnRewardedVideoClickedEvent;
+		MoPubManager.OnRewardedVideoFailedToPlayEvent += OnRewardedVideoFailedToPlayEvent;
+		MoPubManager.OnRewardedVideoLeavingApplicationEvent += OnRewardedVideoLeavingApplicationEvent;
+	}
+
+	public void InitAdMobRV() {
 
 		//*** Rewarded Video
 		MobileAds.Initialize(appId);
@@ -90,41 +121,59 @@ public class ADXSampleScript : MonoBehaviour {
 		rewardedVideo.OnAdClosed += HandleRewardBasedVideoClosed;
 		// Called when the ad click caused the user to leave the application.
 		rewardedVideo.OnAdLeavingApplication += HandleRewardBasedVideoLeftApplication;
-
 	}
 
-	public static void LoadAd() {
+	public void LoadStandard() {
 
-		#if UNITY_ANDROID
-		MoPub.RequestInterstitialAd ("7758ce2f590f43fd8ba9f03d14fc8b78");  
-		#elif UNITY_IPHONE
-		MoPub.RequestInterstitialAd ("f6110c24fa8a4daf9c6159f5ea181e7d");  
-		#endif  
-		
-		#if UNITY_ANDROID
-		string adUnitId = "ca-app-pub-7466439784264697/2318439525";
-		#elif UNITY_IPHONE
-		string adUnitId = "ca-app-pub-7466439784264697/6572954274";
-		#endif
+		MoPub.CreateBanner (bannerAdUnitID, MoPub.AdPosition.BottomCenter); 
+		MoPub.RequestInterstitialAd (interstitialAdUnitID);  
+	}
 
-		VungleRewardedVideoMediationExtras extras = new VungleRewardedVideoMediationExtras();
-		#if UNITY_ANDROID
-		extras.SetAllPlacements(new string[] { "DEFAULT-0339375", "SAMPLE_ANDROID_INTERSTITIAL-0969912", "SAMPLE_ANDROID_REWARDED_VIDEO-3138664" });
-		#elif UNITY_IPHONE
-		extras.SetAllPlacements(new string[] { "DEFAULT-4197699", "SAMPLE_IOS_REWARDED_VIDEO-2228390" });
-		#endif
-
-		if (ADXGDPRManager.GetConsentState() == 2) {
-			extras.Extras.Add ("npa", "1");
+	public void LoadRV() {
+		if (IS_MOPUB_RV) {
+			LoadMoPubRV ();
+		} else {
+			LoadAdMobRV ();
 		}
-
-		// Create an empty ad request.
-		AdRequest request = new AdRequest.Builder().AddMediationExtras(extras).Build();
-		rewardedVideo.LoadAd(request, adUnitId);
-
+	}
+		
+	public void LoadMoPubRV() {
+		MoPub.RequestRewardedVideo (mopubRvAdUnitID); 
 	}
 
-	public static void ShowRewardedVideo() {
+	public void LoadAdMobRV() {
+
+		if (ADXGDPRManager.GetConsentState () == 2) {
+			// Create an empty ad request.
+			AdRequest request = new AdRequest.Builder ()
+				.AddExtra ("npa", "1")
+				.Build ();
+			rewardedVideo.LoadAd (request, admobRvAdUnitID);
+		} else {
+			// Create an empty ad request.
+			AdRequest request = new AdRequest.Builder ()
+				.Build ();
+			rewardedVideo.LoadAd (request, admobRvAdUnitID);
+		}
+	}
+		
+	public void ShowInterstitial(){
+		MoPub.ShowInterstitialAd (interstitialAdUnitID);    
+	}
+
+	public void ShowRV() {
+		if (IS_MOPUB_RV) {
+			ShowMoPubRV ();
+		} else {
+			ShowAdMobRV ();
+		}
+	}
+
+	public void ShowMoPubRV() {
+		MoPub.ShowRewardedVideo (mopubRvAdUnitID); 
+	}
+
+	public void ShowAdMobRV() {
 		rewardedVideo.Show ();
 	}
 
@@ -150,7 +199,44 @@ public class ADXSampleScript : MonoBehaviour {
 		Debug.Log("onInterstitialDismissedEvent ::: " + "s : " + s);
 	}
 
-	//*** Rewarded Video Callback
+	//*** MoPub RV Callback
+	public void OnRewardedVideoLoadedEvent (string s) {
+		Debug.Log ("OnRewardedVideoLoadedEvent : " + s);
+	}
+
+	public void OnRewardedVideoFailedEvent (string s1, string s2) {
+		Debug.Log ("OnRewardedVideoFailedEvent : " + s1 + "/" + s2);
+	}
+
+	public void OnRewardedVideoReceivedRewardEvent (string s1, string s2, float f) {
+		Debug.Log ("OnRewardedVideoReceivedRewardEvent : " + s1 + "/" + s2 + "/" + f);
+	}
+
+	public void OnRewardedVideoClosedEvent (string s) {
+		Debug.Log ("OnRewardedVideoClosedEvent : " + s);
+	}
+
+	public void OnRewardedVideoExpiredEvent (string s) {
+		Debug.Log ("OnRewardedVideoExpiredEvent : " + s);
+	}
+
+	public void OnRewardedVideoShownEvent (string s) {
+		Debug.Log ("OnRewardedVideoShownEvent : " + s);
+	}
+
+	public void OnRewardedVideoClickedEvent (string s) {
+		Debug.Log ("OnRewardedVideoClickedEvent : " + s);
+	}
+
+	public void OnRewardedVideoFailedToPlayEvent (string s1, string s2) {
+		Debug.Log ("OnRewardedVideoFailedToPlayEvent : " + s1 + "/" + s2);
+	}
+
+	public void OnRewardedVideoLeavingApplicationEvent (string s) {
+		Debug.Log ("OnRewardedVideoLeavingApplicationEvent : " + s);
+	}
+
+	//*** AdMob RV Callback
 	public void HandleRewardBasedVideoLoaded(object sender, EventArgs args) {
 		Debug.Log("HandleRewardBasedVideoLoaded event received: " + rewardedVideo.MediationAdapterClassName());
 	}

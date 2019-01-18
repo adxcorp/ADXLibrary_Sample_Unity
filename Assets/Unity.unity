@@ -42,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 11
   m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 8
+    serializedVersion: 9
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
   m_LightingDataAsset: {fileID: 0}
-  m_ShadowMaskMode: 2
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 641924904}
   - component: {fileID: 641924903}
   - component: {fileID: 641924902}
+  - component: {fileID: 641924905}
   m_Layer: 5
   m_Name: Show RV
   m_TagString: Untagged
@@ -346,7 +347,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1030309864}
+      - m_Target: {fileID: 641924905}
         m_MethodName: ShowRV
         m_Mode: 1
         m_Arguments:
@@ -392,6 +393,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 641924900}
+--- !u!114 &641924905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 641924900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 030d9c1e66e79492989243dbabe48e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &872831408
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +563,7 @@ GameObject:
   - component: {fileID: 887354400}
   - component: {fileID: 887354399}
   - component: {fileID: 887354398}
+  - component: {fileID: 887354397}
   m_Layer: 5
   m_Name: Load RV
   m_TagString: Untagged
@@ -577,6 +590,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -150}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &887354397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 887354395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 030d9c1e66e79492989243dbabe48e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &887354398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,7 +640,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1030309864}
+      - m_Target: {fileID: 887354397}
         m_MethodName: LoadRV
         m_Mode: 1
         m_Arguments:
@@ -782,7 +806,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1030309862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dfe58164e9d2456cab9915593045549, type: 3}
+  m_Script: {fileID: 11500000, guid: 030d9c1e66e79492989243dbabe48e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1030309865
@@ -881,6 +905,7 @@ GameObject:
   - component: {fileID: 1140633397}
   - component: {fileID: 1140633396}
   - component: {fileID: 1140633395}
+  - component: {fileID: 1140633394}
   m_Layer: 5
   m_Name: Show Interstitial
   m_TagString: Untagged
@@ -907,6 +932,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1140633394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1140633392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 030d9c1e66e79492989243dbabe48e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1140633395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,7 +982,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1030309864}
+      - m_Target: {fileID: 1140633394}
         m_MethodName: ShowInterstitial
         m_Mode: 1
         m_Arguments:
@@ -1151,6 +1187,7 @@ GameObject:
   - component: {fileID: 1748746456}
   - component: {fileID: 1748746455}
   - component: {fileID: 1748746454}
+  - component: {fileID: 1748746453}
   m_Layer: 5
   m_Name: Load Standard
   m_TagString: Untagged
@@ -1177,6 +1214,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 150}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1748746453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1748746451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 030d9c1e66e79492989243dbabe48e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1748746454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1216,7 +1264,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1030309864}
+      - m_Target: {fileID: 1748746453}
         m_MethodName: LoadStandard
         m_Mode: 1
         m_Arguments:

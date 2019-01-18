@@ -2,6 +2,11 @@ Assets/MoPub
 Assets/PlayServicesResolver
 Assets/GoogleMobileAds
 Assets/ADXLibrary
-Assets/Plugins
 *.meta
 Assets/ADXDependencies
+iOS
+*.apk
+Library
+obj
+Packages
+Temp

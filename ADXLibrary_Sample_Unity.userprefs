@@ -1,14 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ADXLibrary/Internal/ADXBinding.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ADXLibrary/Editor/ADXDependencies.xml">
     <Files>
-      <File FileName="Assets/ADXSampleScript.cs" Line="172" Column="3" />
-      <File FileName="Assets/InterstitialScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/MoPub/Internal/MoPubAndroid.cs" Line="1" Column="1" />
-      <File FileName="Assets/MoPub/MoPub.cs" Line="1" Column="1" />
-      <File FileName="Assets/RewardScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/MoPub/Editor/Postbuild/MoPubPostBuildiOS.cs" Line="1" Column="1" />
-      <File FileName="Assets/ADXLibrary/Internal/ADXBinding.cs" Line="46" Column="9" />
+      <File FileName="Assets/ADXLibrary/Editor/ADXDependencies.xml" Line="12" Column="22" />
+      <File FileName="Assets/MoPub/Scripts/Editor/MoPubPostBuildiOS.cs" Line="1" Column="1" />
+      <File FileName="Assets/ADXSampleScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/ADXLibrary/Internal/ADXBinding.cs" Line="1" Column="1" />
+      <File FileName="Assets/MoPub/Scripts/Editor/MoPubSDKBuild.cs" Line="1" Column="1" />
+      <File FileName="Assets/MoPub/Scripts/Editor/MoPubSDKManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/MoPub/Scripts/Editor/MoPubUpgradeMigration.cs" Line="1" Column="1" />
+      <File FileName="Assets/MoPub/Scripts/MoPubManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

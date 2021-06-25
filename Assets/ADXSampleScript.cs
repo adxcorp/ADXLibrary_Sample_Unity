@@ -15,7 +15,7 @@ public class ADXSampleScript : MonoBehaviour {
 	string interstitialAdUnitID = "a8e0e1ff9de44766be2102e354fe3f92";
 	string mopubRvAdUnitID = "56ceda53658b48198de5993ff3010487";
 
-	string appId = "ca-app-pub-3940256099942544~3347511713";
+	//string appId = "ca-app-pub-3940256099942544~3347511713";
 	string admobRvAdUnitID = "ca-app-pub-3940256099942544/5224354917";
 
 	#elif UNITY_IPHONE
@@ -23,7 +23,7 @@ public class ADXSampleScript : MonoBehaviour {
 	string interstitialAdUnitID = "7495f98d9e534cb78aa274259248f3ef";
 	string mopubRvAdUnitID = "4cbf780ea73e4e218c79a37c50c6eb8e";
 
-	string appId = "ca-app-pub-3940256099942544~1458002511";
+	//string appId = "ca-app-pub-3940256099942544~1458002511";
 	string admobRvAdUnitID = "ca-app-pub-3940256099942544/1712485313";
 	#endif 
 
@@ -153,7 +153,9 @@ public class ADXSampleScript : MonoBehaviour {
 	}
 
 	public void InitAdMobRV() {
-		MobileAds.Initialize(appId);
+		MobileAds.Initialize(initStatus => {
+			Debug.Log("MobileAds Initialize Completed");
+		});
 	}
 
 	public void LoadStandard() {
@@ -291,12 +293,10 @@ public class ADXSampleScript : MonoBehaviour {
         Debug.Log("HandleRewardedAdLoaded event received");
     }
 
-    public void HandleRewardedAdFailedToLoad(object sender, AdErrorEventArgs args)
+    public void HandleRewardedAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
-        Debug.Log(
-            "HandleRewardedAdFailedToLoad event received with message: "
-                             + args.Message);
-    }
+		Debug.Log("HandleRewardedAdFailedToLoad event received");
+	}
 
     public void HandleRewardedAdOpening(object sender, EventArgs args)
     {
@@ -305,10 +305,8 @@ public class ADXSampleScript : MonoBehaviour {
 
     public void HandleRewardedAdFailedToShow(object sender, AdErrorEventArgs args)
     {
-        Debug.Log(
-            "HandleRewardedAdFailedToShow event received with message: "
-                             + args.Message);
-    }
+		Debug.Log("HandleRewardedAdFailedToShow event received");
+	}
 
     public void HandleRewardedAdClosed(object sender, EventArgs args)
     {
